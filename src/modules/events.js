@@ -6,16 +6,20 @@ import * as state from "./state.js";
 import renderer from "./renderer.js";
 
 /*EVENTS*/
-function bindEvents(ctx) {
-    canvas.addEventListener("pointermove", (event) => {
+function bindEvents({env}) {
+    env.canvas.addEventListener("pointermove", (event) => {
         state.setIsPointerMoving(true);
-        handlePanning(event, ctx);
+        handlePanning({event, env});
     });
-    canvas.addEventListener("pointerdown", (event) => {
+    env.canvas.addEventListener("pointerdown", (event) => {
         state.setIsPointerDown(true);
     });
-    canvas.addEventListener("pointerup", handlePointerUp); 
-    canvas.addEventListener("pointerout", handlePointerUp);
+    env.canvas.addEventListener("pointerup", handlePointerUp); 
+    env.canvas.addEventListener("pointerout", handlePointerUp);
+
+    env.window.addEventListener("resize", (event) => {
+        renderer.canvasSetup(env);
+    });
 }
 
 /*HANDLERS*/
@@ -25,14 +29,14 @@ function bindEvents(ctx) {
 * Once it enters the loop below the event object's X and Y values will remain the same,
 * and in that case the "if" statement check inside will set isPointerMoving to false and the loop will terminate.
 */
-async function handlePanning(event, ctx) {
+async function handlePanning({event, env: {ctx}}) {
     while (state.getIsPointerDown() && state.getIsPointerMoving()) {
         state.setPreviousPointerPos(state.getCurrentPointerPos().x, state.getCurrentPointerPos().y);
         state.setCurrentPointerPos(event.offsetX, event.offsetY);
         if(state.getPreviousPointerPos().x === state.getCurrentPointerPos().x && state.getPreviousPointerPos().y === state.getCurrentPointerPos().y) {
             state.setIsPointerMoving(false);
         }
-        renderer.draw(event, ctx);
+        renderer.draw({ctx});
         await new Promise ((resolve) => {setTimeout(resolve, 0)});
     }
 

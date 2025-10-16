@@ -7,6 +7,12 @@ import App from "./modules/app.js";
 import CONFIG from "./modules/config.js";
 
 window.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById(CONFIG.canvasSelector);
-    App.init(canvas);
+    const canvas =  document.getElementById(CONFIG.canvasSelector);
+    const env = {
+        canvas: canvas,
+        ctx: canvas.getContext(CONFIG.contextType),
+        htmlElement: document.querySelector("html"),
+        window: window
+    }
+    App.init(env);
 });

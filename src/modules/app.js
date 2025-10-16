@@ -2,13 +2,13 @@
 * Author: Marlon Cockett
 * Purpose: Apart fo the Controller. Entry point to the application. 
 */
-import CONFIG from "./config.js"
 import * as Events from "./events.js";
+import renderer from "./renderer.js";
 
 const App = {
-    init(canvas) {
-        const ctx = canvas.getContext(CONFIG.contextType);
-        Events.bindEvents(ctx);
+    init(env) {
+        Events.bindEvents({env});
+        renderer.canvasSetup(env);
     },
 };
 

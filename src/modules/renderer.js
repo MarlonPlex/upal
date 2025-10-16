@@ -6,12 +6,19 @@
 import * as state from "./state.js"; 
 
 const renderer = {
-    draw(event, ctx) {
-        state.setIncrement(1);// Fix this to be sensitivity based instead.
+    draw({ctx}) {
+        state.setIncrement(1);// This is temporary
         // console.log(state.getIncrement());
+        // + state.getIncrement()
         ctx.save();
         ctx.reset();
-        ctx.fillRect(100 + state.getIncrement(), 50, 50, 50);
+        ctx.fillRect(100, 50, 50, 50);
+    },
+
+    canvasSetup({ctx, htmlElement, canvas}) {
+        canvas.setAttribute("width", htmlElement.clientWidth);
+        canvas.setAttribute("height", htmlElement.clientHeight);
+        renderer.draw({ctx});
     },
 
 };
