@@ -8,10 +8,11 @@ import CONFIG from "./modules/config.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     const canvas =  document.getElementById(CONFIG.canvasSelector);
+    const htmlElement =  document.querySelector("html");
     const env = {
         canvas: canvas,
         ctx: canvas.getContext(CONFIG.contextType),
-        htmlElement: document.querySelector("html"),
+        htmlElement: htmlElement,
         window: window
     }
     App.init(env);

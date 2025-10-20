@@ -4,13 +4,20 @@
 */
 
 let state = {
+    isNewPanningAction: true,
     isPointerDown: false,
     isPointerMoving: false,
-    increment: 0,
-    previousPointerPos:{ x: 0, y: 0},
-    currentPointerPos: {x: 0, y: 0},
+    pointerPosCurrent: {x: 0, y: 0},
+    pointerPosPrevious:{ x: 0, y: 0},
+    pointerPosDelta: {x: 0, y:0},
 };
 
+export function getIsNewPanningAction () {
+    return state.isNewPanningAction;
+}
+export function setIsNewPanningAction (value) {
+    state.isNewPanningAction = value;
+}
 export function getIsPointerDown () {
     return state.isPointerDown;
 }
@@ -23,25 +30,29 @@ export function getIsPointerMoving () {
 export function setIsPointerMoving (value) {
     state.isPointerMoving = value;
 }
-export function getIncrement () {
-    return state.increment;
+export function getPointerPosCurrent () {
+    return state.pointerPosCurrent;
 }
-export function setIncrement (value) {
-    state.increment = state.increment + value;
+export function setPointerPosCurrent (valueX, valueY) {
+    state.pointerPosCurrent.x = valueX;
+    state.pointerPosCurrent.y = valueY;
 }
-export function getPreviousPointerPos () {
-    return state.previousPointerPos;
+export function getPointerPosPrevious () {
+    return state.pointerPosPrevious;
 }
-export function setPreviousPointerPos (valueX, valueY) {
-    state.previousPointerPos.x = valueX;
-    state.previousPointerPos.y = valueY;
+export function setPointerPosPrevious (valueX, valueY) {
+    state.pointerPosPrevious.x = valueX;
+    state.pointerPosPrevious.y = valueY;
 }
-export function getCurrentPointerPos () {
-    return state.currentPointerPos;
+export function getPointerPosDelta () {
+    return state.pointerPosDelta;
 }
-export function setCurrentPointerPos (valueX, valueY) {
-    state.currentPointerPos.x = valueX;
-    state.currentPointerPos.y = valueY;
+export function setPointerPosDelta (valueX, valueY) {
+    state.pointerPosDelta.x = valueX;
+    state.pointerPosDelta.y = valueY;
+}
+export function calcAndSetPointerPosDelta (){
+    setPointerPosDelta(getPointerPosCurrent().x - getPointerPosPrevious().x, getPointerPosCurrent().y - getPointerPosPrevious().y);
+    // console.log(getPointerPosDelta());
 }
 
-/*Fix getters and setters then update the renderer, app and events logic to use this*/

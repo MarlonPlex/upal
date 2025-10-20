@@ -8,7 +8,7 @@ No Live position, no path finder.
 ## Tasks
 - [ ] Basic Pan with Mouse Click and Drag
     - [x] Draw/pan in one arbitrary direction
-    - [ ] Pan according to mouse coords
+    - [x] Pan according to mouse coords
 - [ ] Basic Zoom with Mouse wheel
 - [ ] Drawing map content from local PostGre DB
 - [ ] Connect to Remote DB with simple API once local testing complete
@@ -18,14 +18,30 @@ No Live position, no path finder.
 
 
 ## Temp Psuedo
-Get the viewport dimensions in js
-Set the canvas to viewport dimensions in js with setAttribute
-redraw/draw content
-set an event listener for viewport size change
-repeat steps 1-3
+Redraw shapes by moving origin relative to cursor coordinates delta
 
-move canvas size setup to renderer
-when handle window resize event fired on controller, 
-save canvas state
-call renderer canvas resize
-draw saved canvas state
+offset transform origin using difference between between current and last pointer position (curr-last: right move = positive, left move = negative)  
+
+save before handle panning is called
+in Handle panning
+obtain coords delta and add to state, add relevant getter and setter
+translate canvas transformation matrix using the coords delta
+call draw
+restore of handle planning
+
+Solve jumping to cursor issue
+
+IF PUp OR POut THEN
+    SET NewAction = True
+
+IF PMove THEN
+    CALL HandlePanning
+        IF PDown && PMove THEN
+            IF NewAction == False THEN
+                SET Prev, Current
+                CALL CalcDelta
+                CALL DRAW
+            SET NewAction = False
+
+
+
