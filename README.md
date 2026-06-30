@@ -1,7 +1,7 @@
 # Note:
 Project development currently paused.
 # UPal
-MPlex Maps web app, UPal.
+MPlex Maps web app, UPal. A fun project to test manipulating canvas events in a browser to create a maps web app from scratch. Also for practicing practical pathfinding implmentations. Map will probably be limited to a school campus or the like in the MVP when complete. 
 
 ## MVP Goal
 MVP - Basic Interface with searching for location
@@ -20,17 +20,19 @@ No Live position, no path finder.
     - [ ] Task 1.0 below
     - [ ] Solve jumping to cursor issue
 - [ ] Drawing map content from local PostGre DB
+- [ ] Search location functionality
+- [ ] Implement my favourite pathfinding algorithms
 
 
-## Temp Psuedo
-Draw map content from Pastgre DB
+## Task 1.0 Psuedo
+- [ ] Test drawing map content from Pastgre DB
 
-Create Map SVG and embed in canvas
-    Make sure map layout aligns with lat-long coordinate grid
-Test zoom and panning and max/min zoom scales
+- [ ] Create Map SVG and embed in canvas
+- [ ] Make sure map layout aligns with lat-long coordinate grid
+- [ ] Test zoom and panning and max/min zoom scales
 
-Populate Postgres db with coordinate calues (1 for now, first pixels, then coords and convert)
-Model State Fetches coords and stores that state intnerally
-Contrroller models (App, Events) retreives state and passes it to view renderer.draw (rename to renderer.drawMap) when called 
+- [ ] Populate Postgres db with coordinate calues (1 for now, first pixels, then coords and convert)
+- [ ] Model State Fetches coords and stores that state intnerally
+- [ ]  Contrroller models (App, Events) retreives state and passes it to view renderer.draw (rename to renderer.drawMap) when called.
 
 
