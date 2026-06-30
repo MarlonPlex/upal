@@ -1,13 +1,14 @@
-# Note
-Development paused for a few months.
-# upal-src
-Open canvas maps web app, UPal.
+# Note:
+Project development currently paused.
+# UPal
+MPlex Maps web app, UPal.
 
 ## MVP Goal
-MVP - Basic Interface with searching for location and pathfinding.
+MVP - Basic Interface with searching for location
+No Live position, no path finder.
 
 ## Tasks
-- [] Basic Pan with Mouse Click and Drag
+- [x] Basic Pan with Mouse Click and Drag
     - [x] Draw/pan in one arbitrary direction
     - [x] Pan according to mouse coords
 - [ ] Basic Zoom with Mouse wheel
@@ -19,25 +20,17 @@ MVP - Basic Interface with searching for location and pathfinding.
     - [ ] Task 1.0 below
     - [ ] Solve jumping to cursor issue
 - [ ] Drawing map content from local PostGre DB
-- [ ] Connect to Remote DB with simple API once local testing complete
-- [ ] Basic UI 
-    - [x] Full screen Canvas and Unskewed Drawing
-- [ ] Search functionality
-- [ ] Pathfinding functionality
-
-## Task 1.0 Psuedo
-save before handle panning is called
-in Handle panning
-obtain coords delta and add to state, add relevant getter and setter
-translate canvas transformation matrix using the coords delta
-call draw
-restore of handle planning
 
 
+## Temp Psuedo
+Draw map content from Pastgre DB
 
+Create Map SVG and embed in canvas
+    Make sure map layout aligns with lat-long coordinate grid
+Test zoom and panning and max/min zoom scales
 
-
-
-
+Populate Postgres db with coordinate calues (1 for now, first pixels, then coords and convert)
+Model State Fetches coords and stores that state intnerally
+Contrroller models (App, Events) retreives state and passes it to view renderer.draw (rename to renderer.drawMap) when called 
 
 

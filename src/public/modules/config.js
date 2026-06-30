@@ -6,6 +6,7 @@
 const CONFIG = {
     canvasSelector:"canvas",
     contextType: "2d",
+    scaleFactor: 1.1,
 };
 
 export default CONFIG;
